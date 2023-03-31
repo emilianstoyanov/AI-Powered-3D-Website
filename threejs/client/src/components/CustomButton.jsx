@@ -1,12 +1,16 @@
 import React from 'react'
+import { useSnapshot } from 'valtio';
 
-const CustomButton = ({type, title, customStyles, handleClick }) => 
-{
+import state from '../store';
+
+const CustomButton = ({type, title, 
+customStyles, handleClick }) => {
+    const snap = useSnapshot(state);
 
     const generateStyle = (type) => {
         if(type === 'filled') {
             return {
-                backgroundColor: '#000',
+                backgroundColor: snap.color,
                 color: '#fff'
             }
         }
@@ -15,6 +19,7 @@ const CustomButton = ({type, title, customStyles, handleClick }) =>
     <button 
     className={`px-2 py-1.5 flex-1 rounded-md ${customStyles}`}
     style={generateStyle(type)}
+    onClick={handleClick}
     >
         {title}
     </button>
