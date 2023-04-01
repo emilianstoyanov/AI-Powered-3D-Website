@@ -9,7 +9,6 @@ function App() {
       <Canvas />
       <Customizer />
     </main>
-  
   )
 }
 

@@ -18,7 +18,7 @@ const Customizer = () => {
   const [prompt, setPrompt] = useState('');
   const [generatingImg, setGeneratingImg] = useState(false);
 
-  const [activeEditorTab, setActiveEditorTab] = useState('');
+  const [activeEditorTab, setActiveEditorTab] = useState("");
   const [activeFilterTab, setActiveFilterTab] = useState({
     logoShirt: true,
     stylishShirt: false,
@@ -30,13 +30,30 @@ const Customizer = () => {
       case 'colorpicker':
         return <ColorPicker />
       case 'filepicker':
-        return <FilePicker />
+        return <FilePicker 
+        file={file}
+        setFile={setFile}
+        
+        />
       case 'aipicker':
         return <AIPicker />
       default:
         return null;
     }
 
+  }
+
+  const handleDecals = (type, result) => {
+    
+  }
+
+
+  const readFile = (type) => {
+    reader(file)
+    .then((result) => {
+      handleDecals(type, result);
+      setActiveEditorTab("");
+    })
   }
 
   return (
@@ -76,7 +93,7 @@ const Customizer = () => {
 
         <motion.div
           className='filtertabs-container'
-          {...slideAnimation('up')}
+          {...slideAnimation("up")}
         >
            {FilterTabs.map((tab) => (
                 <Tab 
