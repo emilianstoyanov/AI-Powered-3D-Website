@@ -37,7 +37,12 @@ const Customizer = () => {
         
         />
       case 'aipicker':
-        return <AIPicker />
+        return <AIPicker 
+          prompt={prompt}
+          setPrompt={setPrompt}
+          generatingImg={generatingImg}
+          handleSubmit={handleSubmit}
+        />
       default:
         return null;
     }
@@ -54,7 +59,7 @@ const Customizer = () => {
 
     }
 
-    const handleActiveFilterTab = (tabName) => {
+  const handleActiveFilterTab = (tabName) => {
       switch (tabName) {
         case 'logoShirt':
           state.isLogoTexture = !activeFilterTab[tabName];
@@ -67,6 +72,15 @@ const Customizer = () => {
       }
     }
   }
+
+  // after setting the state, activeFilterTab is updated
+
+  setActiveFilterTab((prevState) => {
+    return {
+      ...prevState,
+      [tabName]: !prevState[tabName]
+    }
+  })
 
 
   const readFile = (type) => {
@@ -121,8 +135,8 @@ const Customizer = () => {
                   key={tab.name}
                   tab={tab}
                   isFilterTab
-                  isActiveTab=''
-                  handleClick={() => {}}
+                  isActiveTab={activeFilterTab[tab.name]}
+                  handleClick={() => handleActiveFilterTab(tab.name)}
                 />
               ))}
         </motion.div>
