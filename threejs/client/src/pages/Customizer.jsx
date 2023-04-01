@@ -13,8 +13,16 @@ import { AIPicker, ColorPicker, CustomButton, FilePicker, Tab } from '../compone
 
 
 const Customizer = () => {
+  const snap  =useSnapshot(state);
+
   return (
-    <div>Customizer</div>
+    <AnimatePresence>
+      {!snap.intro && (
+        <>
+        Costumizer
+        </>
+      )}
+    </AnimatePresence>
   )
 }
 
