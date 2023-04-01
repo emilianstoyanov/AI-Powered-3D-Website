@@ -54,9 +54,10 @@ const Customizer = () => {
                 <Tab 
                   key={tab.name}
                   tab={tab}
-                  handleClick={() => {}}
+                  handleClick={() => setActiveEditorTab(tab.name)}
                 />
               ))}
+              {generateTabContent()}
             </div>
           </div>
         </motion.div>
